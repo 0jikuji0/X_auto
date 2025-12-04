@@ -1,80 +1,94 @@
-# X_auto — Bot de programmation de posts X (Twitter)
+# X_auto — X (Twitter) Post Scheduling Bot
 
-Ce projet permet de planifier et publier automatiquement des posts sur X (Twitter) en s'appuyant sur une architecture découplée:
-- Backend Node.js qui exécute le bot via Puppeteer
-- Frontend React pour planifier les posts et gérer l'agenda
-- Intégration Firebase (Web + Admin) pour le stockage et l'orchestration
+This project lets you schedule and automatically publish posts to X (Twitter) using a decoupled architecture:
 
-## Fonctionnalités
-- Planification de posts X à des heures précises
-- Interface de calendrier côté frontend (`frontend/src/components/X_bot_scheduler.jsx`)
-- Exécution automatisée des publications via `backend/bot_runner.js`
-- Stockage/lecture des posts via Firebase et/ou le fichier `backend/posts.json`
+- Node.js backend that runs the bot via Puppeteer
+- React frontend to plan posts and manage the schedule
+- Firebase (Web + Admin) integration for storage and orchestration
 
-## Arborescence
+## Features
+
+- Schedule X posts at specific times
+- Frontend calendar interface (`frontend/src/components/X_bot_scheduler.jsx`)
+- Automated posting via `backend/bot_runner.js`
+- Store/read posts via Firebase and/or the local file `backend/posts.json`
+
+## Project structure
+
 ```
 backend/
-  bot_runner.js            # Lance le bot de publication
-  posts.json               # Exemple de données de posts
-  service-account-key.json # Clé de service Firebase Admin (ne pas commiter publiquement)
+  bot_runner.js            # Runs the posting bot
+  posts.json               # Sample post data
+  service-account-key.json # Firebase Admin service account key (do not commit publicly)
 frontend/
   src/
-    firebase_config.js     # Config Firebase côté web
+    firebase_config.js     # Firebase Web config
     components/
-      X_bot_scheduler.jsx  # Planificateur côté UI
-package.json               # Scripts npm et dépendances
+      X_bot_scheduler.jsx  # UI scheduler component
+package.json               # npm scripts and dependencies
 ```
 
-## Prérequis
-- Node.js 18+ (recommandé)
-- Un projet Firebase configuré
-  - Clé de service (Admin SDK) dans `backend/service-account-key.json`
-  - Config Web Firebase dans `frontend/src/firebase_config.js`
-- Accès au compte X (Twitter) pour l'automatisation (Puppeteer)
+## Prerequisites
+
+- Node.js 18+ (recommended)
+- A configured Firebase project
+  - Admin SDK service account JSON in `backend/service-account-key.json`
+  - Firebase Web config in `frontend/src/firebase_config.js`
+- Access to the X (Twitter) account for automation (Puppeteer)
 
 ## Installation
-Dans le dossier racine du projet, installez les dépendances:
+
+From the project root, install dependencies:
 
 ```powershell
 npm install
 ```
 
-## Démarrage rapide
-Le projet fournit un script de développement qui lance le bot backend:
+## Quick start
+
+Run the development script to start the backend bot:
 
 ```powershell
 npm run dev
 ```
 
-Par défaut, cela exécute `node backend/bot_runner.js`.
+By default, this runs `node backend/bot_runner.js`.
 
-### Frontend (optionnel)
-Si vous souhaitez développer l'UI React (`X_bot_scheduler.jsx`), vous pouvez soit:
-- Lancer un serveur de développement séparé (si vous ajoutez un bundler comme Vite/Next),
-- Ou intégrer le composant dans votre application existante.
+### Frontend (optional)
 
-Actuellement, le `package.json` n'inclut pas de serveur frontend (Vite/Next). Ajoutez-le si nécessaire.
+If you want to develop the React UI (`X_bot_scheduler.jsx`), you can either:
+
+- Add and run a separate dev server (e.g., Vite/Next),
+- Or integrate the component into your existing app.
+
+Currently, `package.json` does not include a frontend dev server. Add one if needed.
 
 ## Configuration
-- `.env` (optionnel) pour variables (ex: identifiants X, paramètres Puppeteer). Le projet utilise `dotenv`.
-- `backend/service-account-key.json`: clé JSON du compte de service Firebase Admin.
-- `frontend/src/firebase_config.js`: export des paramètres `apiKey`, `authDomain`, `projectId`, etc. de votre app Firebase Web.
 
-## Données de posts
-- Exemple: `backend/posts.json` peut contenir un tableau d'objets avec le contenu et l'heure planifiée.
-- Le frontend peut écrire/lire ces posts depuis Firebase pour orchestration.
+- `.env` (optional) for variables (e.g., X credentials, Puppeteer settings). The project uses `dotenv`.
+- `backend/service-account-key.json`: Firebase Admin service account JSON.
+- `frontend/src/firebase_config.js`: export your Firebase Web app settings (`apiKey`, `authDomain`, `projectId`, etc.).
 
-## Dépannage
-- Puppeteer: assurez-vous que les dépendances système sont présentes; sur Windows, Puppeteer gère automatiquement Chromium.
-- Authentification X: des changements d'UI côté X peuvent nécessiter des ajustements dans `bot_runner.js`.
-- Firebase: vérifiez que les clés et permissions sont correctes et que les règles de sécurité autorisent les opérations nécessaires.
+## Post data
 
-## Scripts npm utiles
-- `npm run dev` — démarre le bot en mode développement (équivalent à `node backend/bot_runner.js`).
-- `npm start` — démarre le bot (production simple).
+- Example: `backend/posts.json` can contain an array of objects with the content and scheduled time.
+- The frontend can read/write these posts via Firebase for orchestration.
 
-## Sécurité
-Ne commitez jamais `service-account-key.json` ni des identifiants sensibles. Utilisez des variables d'environnement et des coffres de secrets.
+## Troubleshooting
 
-## Licence
-Projet privé. Adapter une licence si nécessaire.
+- Puppeteer: ensure system dependencies are present; on Windows, Puppeteer bundles Chromium automatically.
+- X authentication: UI changes on X may require updates in `bot_runner.js`.
+- Firebase: verify keys/permissions and that security rules allow required operations.
+
+## Useful npm scripts
+
+- `npm run dev` — start the bot in development (equivalent to `node backend/bot_runner.js`).
+- `npm start` — start the bot (simple production).
+
+## Security
+
+Never commit `service-account-key.json` or sensitive credentials. Use environment variables and secret vaults.
+
+## License
+
+Private project. Add a license if needed.
