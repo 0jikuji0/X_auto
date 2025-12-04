@@ -1,0 +1,21 @@
+{
+  "name": "x_auto_bot",
+  "version": "1.0.0",
+  "description": "X (Twitter) Scheduling Bot with Decoupled Architecture",
+  "main": "backend/bot_runner.js",
+  "scripts": {
+    "start": "node backend/bot_runner.js",
+    "dev": "node backend/bot_runner.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "firebase": "^10.7.1",
+    "firebase-admin": "^11.11.1",
+    "puppeteer": "^21.6.1"
+  },
+  "devDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

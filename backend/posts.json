@@ -1,0 +1,8 @@
+[
+    {
+        "id": "test-post-1",
+        "content": "Ceci est un test de post local depuis mon bot !",
+        "scheduleTime": "2023-01-01T00:00:00.000Z",
+        "status": "scheduled"
+    }
+]
